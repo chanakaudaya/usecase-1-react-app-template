@@ -3,6 +3,8 @@ import { Container, Row, Col, Button }  from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp as regThumbsUp } from '@fortawesome/free-regular-svg-icons';
 import { faThumbsUp as solidThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { useAuthContext } from "@asgardeo/auth-react";
+
 // import PetStoreNav from '../../App.js';
 
 // Component to render the item list
@@ -136,6 +138,10 @@ const PetItemList = () => {
   };
 
   export default function Catalog() {
+    const { state, signIn, signOut } = useAuthContext();
+  // Based on Asgardeo SDK, set a variable like below to check and conditionally render the menu
+  let isLoggedIn = state.isAuthenticated;
+
     useEffect(() => {
         document.title = 'PetStore Catalog';
       }, []);
