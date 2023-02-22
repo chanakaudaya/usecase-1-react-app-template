@@ -18,6 +18,8 @@ const PetItemList = () => {
       <>
       <Container>
         <Row>
+
+  
   
   {/* 
   
@@ -136,6 +138,29 @@ const PetItemList = () => {
     );
   
   };
+
+  token = useAuthContext().state.accessToken;
+  const requestOptions = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Authorization': 'Bearer ' + token},
+    body: JSON.stringify({ title: 'React POST Request Example' })
+};
+fetch('https://ceae6b98-792b-4979-b5e4-e2d3e65d6cc7-dev.e1-us-east-azure.choreoapis.dev/frqr/petdetails/1.0.0', requestOptions)
+    .then(response => response.json())
+    .then(data => this.setState({ postId: data.id }));
+
+    // iterate through the array of objects
+    for (var i = 0; i < data.length; i++) {
+        // access the object
+        var obj = data[i];
+        // access the property
+        var prop = obj.itemName;
+    }
+
+    // log the property
+    console.log(prop);
+
 
   export default function Catalog() {
     const { state, signIn, signOut } = useAuthContext();
